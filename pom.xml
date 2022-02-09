@@ -8,8 +8,8 @@
         <version>2.6.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>kea.sem3</groupId>
-    <artifactId>security</artifactId>
+    <groupId>gredal.simon</groupId>
+    <artifactId>cars-r-us</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Cars-R-Us</name>
     <description>Cars-R-Us</description>
@@ -97,7 +97,7 @@
                 <configuration>
                     <excludes>
                         <exclude>
-                            <groupId>org.projectlombok</groupId>
+                            <groupId>org.project-lombok</groupId>
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
