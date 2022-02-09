@@ -25,6 +25,7 @@ public class Car {
     private String model;
     private Integer year;
     private Integer dailyPriceInCents;
+    private Double bestDiscountPercentage;
 
     @CreationTimestamp
     private LocalDateTime created;
@@ -40,10 +41,11 @@ public class Car {
     @ToString.Exclude
     private List<Rental> rentals;
 
-    public Car(String brand, String model, Integer year, Integer dailyPriceInCents) {
+    public Car(String brand, String model, Integer year, Integer dailyPriceInCents, Double bestDiscountPercentage) {
         this.brand = brand;
         this.model = model;
         this.year = year;
         this.dailyPriceInCents = dailyPriceInCents;
+        this.bestDiscountPercentage = bestDiscountPercentage;
     }
 }
