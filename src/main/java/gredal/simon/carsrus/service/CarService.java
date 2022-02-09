@@ -21,9 +21,9 @@ public class CarService {
     }
 
     public CarResponse getCar(Long id, Boolean includeAll) {
-        return CarResponse.of(
-                carRepository.findById(id).orElseThrow(CarNotFoundException::new)
-        );
+        if (!carRepository.existsById(id)) throw new CarNotFoundException("Invalid id");
+
+        return CarResponse.of(carRepository.getById(id));
     }
 
     public CarResponse addCar(CarRequest body) {
