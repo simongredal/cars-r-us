@@ -1,6 +1,7 @@
 package gredal.simon.carsrus.entity;
 
 import gredal.simon.carsrus.security.UserWithPassword;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,8 +13,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
 @DiscriminatorValue("USER")
 @Table(name = "user")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

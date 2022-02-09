@@ -8,7 +8,9 @@ import gredal.simon.carsrus.repository.CarRepository;
 import gredal.simon.carsrus.repository.MemberRepository;
 import gredal.simon.carsrus.repository.RentalRepository;
 import gredal.simon.carsrus.repository.ReservationRepository;
+
 import lombok.AllArgsConstructor;
+
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Configuration;
