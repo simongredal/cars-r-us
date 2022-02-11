@@ -1,11 +1,9 @@
 package gredal.simon.carsrus.dto;
 
 import gredal.simon.carsrus.entity.Car;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
 @ToString
