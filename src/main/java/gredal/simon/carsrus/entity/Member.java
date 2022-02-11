@@ -25,7 +25,7 @@ public class Member extends BaseUser {
     private String city;
     private String zip;
 
-    private Boolean approved;
+    private boolean approved;
     private Integer ranking;
 
     @CreationTimestamp
