@@ -8,7 +8,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
 class CarRepositoryTest {
@@ -17,7 +17,7 @@ class CarRepositoryTest {
 
     @BeforeAll
     static void setUp(@Autowired CarRepository repository) {
-        repository.saveAll( List.of(
+        repository.saveAll(List.of(
                 new Car("Mercedes Benz", "E250 Coupé", 2018, 1_800_00, 0.15),
                 new Car("Mercedes Benz", "Sprinter 316", 2018, 1_100_00, 0.15),
                 new Car("Skoda", "Fabia 1,5 TSI", 2020, 900_00, 0.05),

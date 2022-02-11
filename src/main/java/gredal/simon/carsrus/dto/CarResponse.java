@@ -2,18 +2,18 @@ package gredal.simon.carsrus.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-
 import gredal.simon.carsrus.entity.Car;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @NoArgsConstructor
 @Getter @Setter
+@ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CarResponse {
     private Long id;
@@ -24,10 +24,10 @@ public class CarResponse {
     private Integer dailyPriceInCents;
     private Double bestDiscountPercentage;
 
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss",shape = JsonFormat.Shape.STRING)
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private LocalDateTime created;
 
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss",shape = JsonFormat.Shape.STRING)
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private LocalDateTime lastEdited;
 
     public CarResponse(Car car, Boolean includeAll) {
@@ -52,6 +52,4 @@ public class CarResponse {
     public static List<CarResponse> of(List<Car> entities) {
         return entities.stream().map(CarResponse::of).toList();
     }
-
-
 }

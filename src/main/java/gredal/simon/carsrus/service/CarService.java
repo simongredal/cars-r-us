@@ -4,9 +4,7 @@ import gredal.simon.carsrus.dto.CarRequest;
 import gredal.simon.carsrus.dto.CarResponse;
 import gredal.simon.carsrus.error.CarNotFoundException;
 import gredal.simon.carsrus.repository.CarRepository;
-
 import lombok.AllArgsConstructor;
-
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +15,7 @@ public class CarService {
     private final CarRepository carRepository;
 
     public List<CarResponse> getCars() {
-        return CarResponse.of( carRepository.findAll() );
+        return CarResponse.of(carRepository.findAll());
     }
 
     public CarResponse getCar(Long id, Boolean includeAll) {
@@ -27,7 +25,7 @@ public class CarService {
     }
 
     public CarResponse addCar(CarRequest body) {
-        return CarResponse.of(carRepository.save( body.toCar() ));
+        return CarResponse.of(carRepository.save(body.toCar()));
     }
 
     public CarResponse editCar(CarRequest body, Long id) {
@@ -37,6 +35,5 @@ public class CarService {
     public void deleteCar(Long id) {
         carRepository.deleteById(id);
     }
-
 }
 

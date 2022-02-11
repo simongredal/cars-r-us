@@ -3,16 +3,14 @@ package gredal.simon.carsrus.api;
 import gredal.simon.carsrus.dto.CarRequest;
 import gredal.simon.carsrus.dto.CarResponse;
 import gredal.simon.carsrus.service.CarService;
-
 import lombok.AllArgsConstructor;
-
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
 @RequestMapping("/api/cars")
+@AllArgsConstructor
 public class CarController {
     private final CarService carService;
 
