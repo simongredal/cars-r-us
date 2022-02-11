@@ -1,6 +1,6 @@
 name: Java CI
 
-on: [push]
+on: [ push,  pull_request ]
 
 jobs:
   build-and-test:
@@ -9,13 +9,23 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Set up JDK 17
+
+      - name: Set up Java
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-          distribution: 'adopt'
+          distribution: 'zulu'
+
       - name: Build and Test with Maven
-        run: ./mvnw test --batch-mode --fail-at-end
-      - name: Publish Results
+        run: ./mvnw clean install
+
+      - name: Publish Test Results
         uses: scacap/action-surefire-report@v1
         if: always()
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v2
+        with:
+          name: java-app
+          path: '${{ github.workspace }}/target/*.jar'
+          retention-days: 2
