@@ -27,14 +27,15 @@ public class MakeTestData implements ApplicationRunner {
     private final RentalRepository rentalRepository;
 
     public void makeMembers() {
+        System.out.println("\n\n\n\n\n\n\noh no!\n\n\n\n\n\n\n");
         Member member1 = new Member("member1@mail.com", "password", "holger", "hansen");
         member1.addRole(Role.USER);
 
         Member member2 = new Member("member2@mail.com", "password", "jane", "jensen");
-        member1.addRole(Role.USER);
+        member2.addRole(Role.USER);
 
         Member member3 = new Member("member3@mail.com", "password", "frida", "frederiksen");
-        member1.addRole(Role.USER);
+        member3.addRole(Role.USER);
 
         memberRepository.save(member1);
         memberRepository.save(member2);
