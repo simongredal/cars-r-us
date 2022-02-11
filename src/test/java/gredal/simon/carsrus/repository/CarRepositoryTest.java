@@ -1,6 +1,7 @@
 package gredal.simon.carsrus.repository;
 
 import gredal.simon.carsrus.entity.Car;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +9,12 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 class CarRepositoryTest {
     @Autowired
-    CarRepository repository;
+    private CarRepository repository;
 
     @BeforeAll
     static void setUp(@Autowired CarRepository repository) {
@@ -25,6 +26,11 @@ class CarRepositoryTest {
                 new Car("Peugeot", "208", 2016, 800_00, 0.05),
                 new Car("Peugeot", "308 SW", 2015, 1_100_00, 0.05)
         ));
+    }
+
+    @AfterAll
+    static void tearDown(@Autowired CarRepository carRepository) {
+        carRepository.deleteAll();
     }
 
     @Test
