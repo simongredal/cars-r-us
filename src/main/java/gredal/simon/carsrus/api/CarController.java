@@ -14,26 +14,31 @@ import java.util.List;
 public class CarController {
     private final CarService carService;
 
+    // Should be accessible by anyone
     @GetMapping
     public List<CarResponse> getCars() {
         return carService.getCars();
     }
 
+    // Should be accessible by anyone
     @GetMapping("/{id}")
     public CarResponse getCar(@PathVariable Long id) {
         return carService.getCar(id, false);
     }
 
+    // Should be accessible by admin
     @PostMapping
     public CarResponse addCar(@RequestBody CarRequest body) {
         return carService.addCar(body);
     }
 
+    // Should be accessible by admin
     @PutMapping("/{id}")
     public CarResponse editCar(@RequestBody CarRequest body, @PathVariable Long id) {
         return carService.editCar(body, id);
     }
 
+    // Should be accessible by admin
     @DeleteMapping("/{id}")
     public void deleteCar(@PathVariable Long id) {
         carService.deleteCar(id);
