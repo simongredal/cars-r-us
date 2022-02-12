@@ -6,7 +6,7 @@ name: Build and deploy container app to Azure Web App - simo95i9-cars-r-us-v7
 on:
   push:
     branches:
-      - azure_deployment
+      - main
   workflow_dispatch:
 
 jobs:

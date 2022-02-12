@@ -17,7 +17,7 @@ jobs:
           distribution: 'zulu'
 
       - name: Build and Test with Maven
-        run: ./mvnw clean install
+        run: ./mvnw clean test
 
       - name: Publish Test Results
         uses: scacap/action-surefire-report@v1
