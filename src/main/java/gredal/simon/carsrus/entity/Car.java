@@ -5,20 +5,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @NoArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
 @ToString
 public class Car {
     @Id
@@ -29,6 +24,7 @@ public class Car {
     private String model;
     private Integer year;
     private Integer dailyPriceInCents;
+    private Double bestDiscountPercentage;
 
     @CreationTimestamp
     private LocalDateTime created;
@@ -44,10 +40,11 @@ public class Car {
     @ToString.Exclude
     private List<Rental> rentals;
 
-    public Car(String brand, String model, Integer year, Integer dailyPriceInCents) {
+    public Car(String brand, String model, Integer year, Integer dailyPriceInCents, Double bestDiscountPercentage) {
         this.brand = brand;
         this.model = model;
         this.year = year;
         this.dailyPriceInCents = dailyPriceInCents;
+        this.bestDiscountPercentage = bestDiscountPercentage;
     }
 }

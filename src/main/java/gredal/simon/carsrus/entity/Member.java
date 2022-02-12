@@ -1,22 +1,21 @@
 package gredal.simon.carsrus.entity;
 
-import lombok.*;
-import org.hibernate.annotations.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 @Entity
 @NoArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
 @ToString
 public class Member extends BaseUser {
     private String firstName;
@@ -26,7 +25,7 @@ public class Member extends BaseUser {
     private String city;
     private String zip;
 
-    private Boolean approved;
+    private boolean approved;
     private Integer ranking;
 
     @CreationTimestamp

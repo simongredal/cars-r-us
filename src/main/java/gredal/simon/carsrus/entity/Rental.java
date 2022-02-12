@@ -12,8 +12,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
 @ToString
 public class Rental {
     @Id
