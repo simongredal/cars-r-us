@@ -1,0 +1,51 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy container app to Azure Web App - simo95i9-cars-r-us-v7
+
+on:
+  push:
+    branches:
+      - azure_deployment
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Log in to registry
+      uses: docker/login-action@v1
+      with:
+        registry: https://index.docker.io/v1/
+        username: ${{ secrets.AzureAppService_ContainerUsername_26b2c9c3bc6b4c48bef6e32340c0b84f }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_1a34051af7fa4bfeb3b27bd57adef0c7 }}
+
+    - name: Build and push container image to registry
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_26b2c9c3bc6b4c48bef6e32340c0b84f }}/cars-r-us:${{ github.sha }}
+        file: ./Dockerfile
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'simo95i9-cars-r-us-v7'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_7c505ff7e15649099a877bb6144d46ed }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_26b2c9c3bc6b4c48bef6e32340c0b84f }}/cars-r-us:${{ github.sha }}'
