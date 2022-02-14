@@ -1,4 +1,4 @@
-package gredal.simon.carsrus.error;
+package gredal.simon.carsrus.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
