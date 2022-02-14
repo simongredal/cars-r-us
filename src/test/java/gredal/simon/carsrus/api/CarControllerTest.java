@@ -70,7 +70,7 @@ class CarControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.path").value("/api/cars/" + 42069))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.reason").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.exception").value("CarNotFoundException"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.status").value("404 Not Found"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(404));
     }
 
     @Test
