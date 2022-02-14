@@ -2,7 +2,7 @@ package gredal.simon.carsrus.service;
 
 import gredal.simon.carsrus.dto.MemberRequest;
 import gredal.simon.carsrus.dto.MemberResponse;
-import gredal.simon.carsrus.error.MemberNotFoundException;
+import gredal.simon.carsrus.exception.MemberNotFoundException;
 import gredal.simon.carsrus.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -2,7 +2,7 @@ package gredal.simon.carsrus.service;
 
 import gredal.simon.carsrus.dto.CarRequest;
 import gredal.simon.carsrus.dto.CarResponse;
-import gredal.simon.carsrus.error.CarNotFoundException;
+import gredal.simon.carsrus.exception.CarNotFoundException;
 import gredal.simon.carsrus.repository.CarRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

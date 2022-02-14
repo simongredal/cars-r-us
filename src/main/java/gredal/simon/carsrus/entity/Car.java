@@ -13,8 +13,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@Getter @Setter
-@ToString
+@Getter @Setter @ToString
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

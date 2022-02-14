@@ -14,9 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
+@Getter @Setter @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MemberResponse {
     private Long id;
@@ -35,13 +33,11 @@ public class MemberResponse {
     private boolean approved;
     private Integer ranking;
 
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private LocalDateTime created;
-
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private LocalDateTime lastEdited;
 
     public MemberResponse(Member member, Boolean includeAll) {
+        if (member == null) return;
         this.id = member.getId();
         this.email = member.getEmail();
         this.firstName = member.getFirstName();
@@ -50,15 +46,14 @@ public class MemberResponse {
         this.city = member.getCity();
         this.zip = member.getZip();
 
-        if (includeAll) {
-            this.password = member.getPassword();
-            this.enabled = member.isEnabled();
-            this.roles = member.getRoles();
-            this.approved = member.isApproved();
-            this.ranking = member.getRanking();
-            this.created = member.getCreated();
-            this.lastEdited = member.getLastEdited();
-        }
+        if (!includeAll) return;
+        this.password = member.getPassword();
+        this.enabled = member.isEnabled();
+        this.roles = member.getRoles();
+        this.approved = member.isApproved();
+        this.ranking = member.getRanking();
+        this.created = member.getCreated();
+        this.lastEdited = member.getLastEdited();
     }
 
     public static MemberResponse of(Member entity) {

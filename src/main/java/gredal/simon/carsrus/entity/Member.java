@@ -15,8 +15,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@Getter @Setter
-@ToString
+@Getter @Setter @ToString
 public class Member extends BaseUser {
     private String firstName;
     private String lastName;
