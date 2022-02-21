@@ -2,7 +2,7 @@ FROM maven:3-openjdk-17 AS build
 WORKDIR /tmp
 ADD pom.xml .
 ADD src src
-RUN ["mvn", "clean", "install"]
+RUN ["mvn", "-Pstaging", "clean", "install"]
 
 FROM openjdk:17 AS run
 COPY --from=build /tmp/target/*.jar app.jar
