@@ -24,6 +24,12 @@
             </properties>
         </profile>
         <profile>
+            <id>staging</id>
+            <properties>
+                <activeProfile>staging</activeProfile>
+            </properties>
+        </profile>
+        <profile>
             <id>development</id>
             <properties>
                 <activeProfile>development</activeProfile>
