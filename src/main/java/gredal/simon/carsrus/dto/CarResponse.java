@@ -1,6 +1,5 @@
 package gredal.simon.carsrus.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import gredal.simon.carsrus.entity.Car;
 import lombok.Getter;
@@ -12,8 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @NoArgsConstructor
-@Getter @Setter
-@ToString
+@Getter @Setter @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CarResponse {
     private Long id;
@@ -24,25 +22,22 @@ public class CarResponse {
     private Integer dailyPriceInCents;
     private Double bestDiscountPercentage;
 
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private LocalDateTime created;
-
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private LocalDateTime lastEdited;
 
     public CarResponse(Car car, Boolean includeAll) {
+        if (car == null) return;
         this.id = car.getId();
-
         this.brand = car.getBrand();
         this.model = car.getModel();
         this.year = car.getYear();
         this.dailyPriceInCents = car.getDailyPriceInCents();
 
-        if (includeAll) {
-            this.bestDiscountPercentage = car.getBestDiscountPercentage();
-            this.created = car.getCreated();
-            this.lastEdited = car.getLastEdited();
-        }
+
+        if (!includeAll) return;
+        this.bestDiscountPercentage = car.getBestDiscountPercentage();
+        this.created = car.getCreated();
+        this.lastEdited = car.getLastEdited();
     }
 
     public static CarResponse of(Car entity) {

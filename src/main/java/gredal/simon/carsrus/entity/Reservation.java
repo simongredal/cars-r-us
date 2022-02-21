@@ -8,19 +8,19 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
-@Getter @Setter
-@ToString
+@Getter @Setter @ToString
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime reservationDateTime;
-    private LocalDateTime rentalDateTime;
+    private LocalDate reservationDate;
+    private LocalDate rentalDate;
 
     @CreationTimestamp
     private LocalDateTime created;
@@ -34,9 +34,9 @@ public class Reservation {
     @ManyToOne
     private Member member;
 
-    public Reservation(LocalDateTime reservationDateTime, LocalDateTime rentalDateTime, Member member, Car car) {
-        this.reservationDateTime = reservationDateTime;
-        this.rentalDateTime = rentalDateTime;
+    public Reservation(LocalDate reservationDateTime, LocalDate rentalDate, Member member, Car car) {
+        this.reservationDate = reservationDateTime;
+        this.rentalDate = rentalDate;
         this.member = member;
         this.car = car;
     }

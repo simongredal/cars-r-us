@@ -14,11 +14,11 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Configuration
-@Profile("!test")
+@Profile({"development","staging"})
 @AllArgsConstructor
 public class MakeTestData implements ApplicationRunner {
     private final MemberRepository memberRepository;
@@ -57,11 +57,11 @@ public class MakeTestData implements ApplicationRunner {
 
     public void makeReservations() {
         List<Reservation> reservations = List.of(
-                new Reservation(LocalDateTime.now(), LocalDateTime.now().plusWeeks(2L), memberRepository.getById(1L), carRepository.getById(1L)),
-                new Reservation(LocalDateTime.now(), LocalDateTime.now().plusWeeks(1L), memberRepository.getById(2L), carRepository.getById(1L)),
-                new Reservation(LocalDateTime.now(), LocalDateTime.now().plusWeeks(1L), memberRepository.getById(3L), carRepository.getById(3L)),
-                new Reservation(LocalDateTime.now(), LocalDateTime.now().plusDays(3L), memberRepository.getById(2L), carRepository.getById(4L)),
-                new Reservation(LocalDateTime.now(), LocalDateTime.now().plusDays(2L), memberRepository.getById(3L), carRepository.getById(6L))
+                new Reservation(LocalDate.now(), LocalDate.now().plusWeeks(2L), memberRepository.getById(1L), carRepository.getById(1L)),
+                new Reservation(LocalDate.now(), LocalDate.now().plusWeeks(1L), memberRepository.getById(2L), carRepository.getById(1L)),
+                new Reservation(LocalDate.now(), LocalDate.now().plusWeeks(1L), memberRepository.getById(3L), carRepository.getById(3L)),
+                new Reservation(LocalDate.now(), LocalDate.now().plusDays(3L), memberRepository.getById(2L), carRepository.getById(4L)),
+                new Reservation(LocalDate.now(), LocalDate.now().plusDays(2L), memberRepository.getById(3L), carRepository.getById(6L))
         );
 
         reservationRepository.saveAll(reservations);

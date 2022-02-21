@@ -5,8 +5,7 @@ import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter @Setter
-@ToString
+@Getter @Setter @ToString
 public class CarRequest {
     private String brand;
     private String model;

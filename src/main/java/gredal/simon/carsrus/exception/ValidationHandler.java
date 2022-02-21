@@ -1,9 +1,5 @@
-package gredal.simon.carsrus.error;
+package gredal.simon.carsrus.exception;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -14,11 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestControllerAdvice
 public class ValidationHandler extends ResponseEntityExceptionHandler {
-    @ExceptionHandler(ResponseStatusException.class)
+    @ExceptionHandler({ResponseStatusException.class})
     public ResponseEntity<ErrorResponse> handleException(HttpServletRequest request, ResponseStatusException ex) {
         ErrorResponse errorResponse = new ErrorResponse(
                 request.getRequestURI(),
-                "%d %s".formatted(ex.getStatus().value(), ex.getStatus().getReasonPhrase()),
+                ex.getStatus().value(),
                 ex.getClass().getSimpleName(),
                 ex.getReason()
         );
@@ -26,15 +22,6 @@ public class ValidationHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errorResponse, ex.getStatus());
     }
 
-    @AllArgsConstructor
-    @Getter @Setter
-    @ToString
-    private static class ErrorResponse {
-        private String path;
-        private String status;
-        private String exception;
-        private String reason;
-    }
-
+    private record ErrorResponse(String path, Integer status, String exception, String reason) {}
 }
 

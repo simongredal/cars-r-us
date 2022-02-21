@@ -4,6 +4,7 @@ import gredal.simon.carsrus.dto.CarRequest;
 import gredal.simon.carsrus.dto.CarResponse;
 import gredal.simon.carsrus.service.CarService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,31 +16,31 @@ public class CarController {
     private final CarService carService;
 
     // Should be accessible by anyone
-    @GetMapping
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<CarResponse> getCars() {
         return carService.getCars();
     }
 
     // Should be accessible by anyone
-    @GetMapping("/{id}")
+    @GetMapping(path = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public CarResponse getCar(@PathVariable Long id) {
         return carService.getCar(id, false);
     }
 
     // Should be accessible by admin
-    @PostMapping
+    @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     public CarResponse addCar(@RequestBody CarRequest body) {
         return carService.addCar(body);
     }
 
     // Should be accessible by admin
-    @PutMapping("/{id}")
+    @PutMapping(path = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public CarResponse editCar(@RequestBody CarRequest body, @PathVariable Long id) {
         return carService.editCar(body, id);
     }
 
     // Should be accessible by admin
-    @DeleteMapping("/{id}")
+    @DeleteMapping(path = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public void deleteCar(@PathVariable Long id) {
         carService.deleteCar(id);
     }

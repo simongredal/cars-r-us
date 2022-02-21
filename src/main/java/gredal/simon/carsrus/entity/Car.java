@@ -1,9 +1,6 @@
 package gredal.simon.carsrus.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -13,8 +10,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@Getter @Setter
-@ToString
+@Getter @Setter @ToString
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

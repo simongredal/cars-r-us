@@ -3,6 +3,28 @@
 Here is a short highlight of this week's commits.
 
 ### Important Changes
+- Reworked the way Put requests works to be more intuitive
+- A lot of empty tests have been added, because I didn't feel like actually writing them
+- Added Swagger documentation when running in staging profile
+
+### Other Changes
+- Small changes to profiles and failing tests
+
+### CI / CD
+- Azure runs the stagin profile for now, so it shows the index page and swagger documentation
+
+
+### Earlier Changes
+
+<details>
+  <summary>
+    Week 2 [a9d07cd6]
+    <a href="https://github.com/simongredal/cars-r-us/tree/a9d07cd6">(browse repository at this point in history)</a>
+    or <a href="https://github.com/simongredal/cars-r-us/compare/a9d07cd6...main">(compare with current)</a>
+  </summary>
+  <article>
+
+### Important Changes
 - Car entity has received new attribute `bestDiscountPercentage`
 - Created MVC layers for Car (API controller and service classes plus response and request DTOs)
 - Created MVC layers for Member (API controller and service classes plus response and request DTOs)
@@ -15,17 +37,18 @@ Here is a short highlight of this week's commits.
 - Reformatted code and imports
 - Replaced the generic `Client400xException` with more specific `CarNotFoundException` and `MemberNotFoundException`
 - Changed the way `ValidationHandler` renders Exceptions
-- Maven profiles have been created. They are set up to control the Spring Boot profile which makes 
+- Maven profiles have been created. They are set up to control the Spring Boot profile which makes
   switching between different `application.properties` files super easy
 
-### Continuous Deployment 
+### Continuous Deployment
 - Created a Dockerfile to build and run the application.
 - Created a GitHub Action. This Action builds a Docker image from the Dockerfile, then the image is uploaded to my
   Docker Hub. My Azure App Service then downloads this image and deploys it. The reason for doing it this way instead
   of directly building a .jar and deploying it to an Azure App Service is because I'm stubborn and want to use Java 17,
   but this runtime is not yet supported directly by Azure App Services.
 
-### Earlier Changes
+  </article>
+</details>
 
 <details>
   <summary>

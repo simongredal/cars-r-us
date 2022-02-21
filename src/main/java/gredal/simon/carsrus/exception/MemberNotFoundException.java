@@ -1,4 +1,4 @@
-package gredal.simon.carsrus.error;
+package gredal.simon.carsrus.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
