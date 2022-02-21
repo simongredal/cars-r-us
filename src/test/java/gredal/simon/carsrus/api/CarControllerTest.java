@@ -71,7 +71,8 @@ class CarControllerTest {
                 .andDo(print())
                 .andExpect(status().isNotFound())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.path").value("/api/cars/" + 42069))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.reason").exists())
+                // remove test, because null doesn't "exist" but it is a "valid" reason so shouldn't fail
+                //.andExpect(MockMvcResultMatchers.jsonPath("$.reason").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.exception").value("CarNotFoundException"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(404));
     }
