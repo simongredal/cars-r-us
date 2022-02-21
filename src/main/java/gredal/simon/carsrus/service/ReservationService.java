@@ -5,9 +5,7 @@ import gredal.simon.carsrus.dto.ReservationResponse;
 import gredal.simon.carsrus.entity.Car;
 import gredal.simon.carsrus.entity.Member;
 import gredal.simon.carsrus.entity.Reservation;
-import gredal.simon.carsrus.exception.CarNotFoundException;
-import gredal.simon.carsrus.exception.MemberNotFoundException;
-import gredal.simon.carsrus.exception.ReservationNotFoundException;
+import gredal.simon.carsrus.exception.*;
 import gredal.simon.carsrus.repository.CarRepository;
 import gredal.simon.carsrus.repository.MemberRepository;
 import gredal.simon.carsrus.repository.ReservationRepository;
@@ -34,13 +32,51 @@ public class ReservationService {
         return ReservationResponse.of(reservation);
     }
 
+    public List<ReservationResponse> getReservationsByMemberId(Long id) {
+        if (!memberRepository.existsById(id)) throw new MemberNotFoundException();
+
+        List<Reservation> reservations = reservationRepository.findByMember_Id(id);
+        return ReservationResponse.of(reservations);
+    }
+
+    public List<ReservationResponse> getReservationsByCarId(Long id) {
+        if (!carRepository.existsById(id)) throw new CarNotFoundException();
+
+        List<Reservation> reservations = reservationRepository.findByCar_Id(id);
+        return ReservationResponse.of(reservations);
+    }
+
     public ReservationResponse addReservation(ReservationRequest body, Long memberId, Long carId) {
         if (!memberRepository.existsById(memberId)) throw new MemberNotFoundException();
         if (!carRepository.existsById(carId)) throw new CarNotFoundException();
 
+        boolean alreadyBooked = reservationRepository.existsByRentalDateAndCar_Id(body.getRentalDate(), carId);
+        if (alreadyBooked) throw new CarAlreadyBookedException();
+
         Member member = memberRepository.getById(memberId);
         Car car = carRepository.getById(carId);
         Reservation reservation = body.toReservation();
+        reservation.setMember(member);
+        reservation.setCar(car);
+
+        reservation = reservationRepository.save(reservation);
+        return ReservationResponse.of(reservation);
+    }
+
+    public ReservationResponse editReservation(ReservationRequest body, Long reservationId,  Long memberId, Long carId) {
+        if (!reservationRepository.existsById(reservationId)) throw new ReservationNotFoundException();
+        if (!memberRepository.existsById(memberId)) throw new MemberNotFoundException();
+        if (!carRepository.existsById(carId)) throw new CarNotFoundException();
+
+        boolean alreadyBooked = reservationRepository.existsByRentalDateAndCar_Id(body.getRentalDate(), carId);
+        if (alreadyBooked) throw new CarAlreadyBookedException();
+
+        Reservation reservation = reservationRepository.getById(reservationId);
+        Member member = memberRepository.getById(memberId);
+        Car car = carRepository.getById(carId);
+
+        if (body.getReservationDate() != null) reservation.setReservationDate(body.getReservationDate());
+        if (body.getRentalDate()      != null) reservation.setRentalDate(body.getRentalDate());
         reservation.setMember(member);
         reservation.setCar(car);
 

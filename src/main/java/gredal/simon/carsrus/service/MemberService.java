@@ -2,6 +2,10 @@ package gredal.simon.carsrus.service;
 
 import gredal.simon.carsrus.dto.MemberRequest;
 import gredal.simon.carsrus.dto.MemberResponse;
+import gredal.simon.carsrus.entity.Member;
+import gredal.simon.carsrus.entity.Role;
+import gredal.simon.carsrus.exception.EmailInvalidException;
+import gredal.simon.carsrus.exception.FunctionalityNotImplementedException;
 import gredal.simon.carsrus.exception.MemberNotFoundException;
 import gredal.simon.carsrus.repository.MemberRepository;
 import lombok.AllArgsConstructor;
@@ -25,11 +29,27 @@ public class MemberService {
     }
 
     public MemberResponse addMember(MemberRequest body) {
-        return MemberResponse.of(memberRepository.save(body.toMember()));
+        if (memberRepository.existsByEmail(body.getEmail() )) throw new EmailInvalidException();
+
+        Member member = body.toMember();
+        member.addRole(Role.USER);
+
+        member = memberRepository.save(member);
+        return MemberResponse.of(member);
     }
 
     public MemberResponse editMember(MemberRequest body, Long id) {
-        return null;
+        if (!memberRepository.existsById(id)) throw new MemberNotFoundException();
+
+        Member member = memberRepository.getById(id);
+        if (body.getFirstName() != null) member.setFirstName(body.getFirstName());
+        if (body.getLastName()  != null) member.setLastName(body.getLastName());
+        if (body.getStreet()    != null) member.setStreet(body.getStreet());
+        if (body.getCity()      != null) member.setCity(body.getCity());
+        if (body.getZip()       != null) member.setZip(body.getZip());
+
+        member = memberRepository.save(member);
+        return MemberResponse.of(member);
     }
 
     public void deleteMember(Long id) {

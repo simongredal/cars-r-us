@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,8 +17,8 @@ import java.util.List;
 public class ReservationResponse {
     private Long id;
 
-    private LocalDateTime reservationDateTime;
-    private LocalDateTime rentalDateTime;
+    private LocalDate reservationDate;
+    private LocalDate rentalDate;
 
     private CarResponse car;
     private MemberResponse member;
@@ -28,8 +29,8 @@ public class ReservationResponse {
     private ReservationResponse(Reservation reservation) {
         if (reservation == null) return;
         this.id = reservation.getId();
-        this.reservationDateTime = reservation.getReservationDateTime();
-        this.rentalDateTime = reservation.getRentalDateTime();
+        this.reservationDate = reservation.getReservationDate();
+        this.rentalDate = reservation.getRentalDate();
         this.car = CarResponse.of(reservation.getCar());
         this.member = MemberResponse.of(reservation.getMember());
         this.created = reservation.getCreated();

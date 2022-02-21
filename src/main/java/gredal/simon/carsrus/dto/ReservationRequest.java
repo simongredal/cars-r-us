@@ -7,19 +7,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @Getter @Setter @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ReservationRequest {
-    private LocalDateTime reservationDateTime;
-    private LocalDateTime rentalDateTime;
+    private LocalDate reservationDate;
+    private LocalDate rentalDate;
 
     public Reservation toReservation() {
         Reservation reservation = new Reservation();
-        reservation.setReservationDateTime(this.reservationDateTime);
-        reservation.setRentalDateTime(this.rentalDateTime);
+        reservation.setReservationDate(this.reservationDate);
+        reservation.setRentalDate(this.rentalDate);
         return reservation;
     }
 }
