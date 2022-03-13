@@ -7,11 +7,13 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/cars")
 @AllArgsConstructor
+@CrossOrigin
 public class CarController {
     private final CarService carService;
 
@@ -29,6 +31,7 @@ public class CarController {
 
     // Should be accessible by admin
     @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RolesAllowed("ADMIN")
     public CarResponse addCar(@RequestBody CarRequest body) {
         return carService.addCar(body);
     }
