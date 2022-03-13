@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -10,7 +10,10 @@
     <p>Check out the <a href="/swagger-ui/index.html">API documentation</a></p>
     <p>Check out the <a href="https://github.com/simongredal/cars-r-us/">code on GitHub</a></p>
     <br><br><br>
-    <center><small><small>Copyright Simon Gredal 2022</small></small></center>
+    <center>
+        <small><small>Copyright Simon Gredal 2022</small></small><br>
+        <small><small th:text="'Cars \'R\' Us built at ' + ${buildTime} + ' from commit ' + ${buildCommit}"></small></small>
+    </center>
 </main>
 </body>
 </html>
