@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/members")
 @AllArgsConstructor
+@CrossOrigin
 public class MemberController {
     private final MemberService memberService;
 
