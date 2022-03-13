@@ -1,6 +1,27 @@
 # Cars 'R' Us
 
-Here is a short highlight of this week's commits.
+Here is a short highlight of these many weeks' commits.
+
+### Important Changes
+- Imported new Spring Security thing from Lars
+- Updated Controllers to allow cross-origin access
+- CarController uses RolesAllowed to determine authorization
+- Made tests for AuthenticationController
+
+### Other Changes
+- Cool build/commit info on index page
+
+### CI / CD
+- Nothing
+
+### Earlier Changes
+
+<details>
+<summary>
+  Week 3 [e54940ec]
+  <a href="https://github.com/simongredal/cars-r-us/tree/e54940ec">(browse repository at this point in history)</a>
+  or <a href="https://github.com/simongredal/cars-r-us/compare/e54940ec...main">(compare with current)</a>
+</summary>
 
 ### Important Changes
 - Reworked the way Put requests works to be more intuitive
@@ -11,10 +32,9 @@ Here is a short highlight of this week's commits.
 - Small changes to profiles and failing tests
 
 ### CI / CD
-- Azure runs the stagin profile for now, so it shows the index page and swagger documentation
+- Azure runs the staging profile for now, so it shows the index page and swagger documentation
 
-
-### Earlier Changes
+</details>
 
 <details>
   <summary>
@@ -52,9 +72,9 @@ Here is a short highlight of this week's commits.
 
 <details>
   <summary>
-    Week 1 [970a88]
-    <a href="https://github.com/simongredal/cars-r-us/tree/970a88">(browse repository at this point in history)</a>
-    or <a href="https://github.com/simongredal/cars-r-us/compare/970a88...main">(compare with current)</a>
+    Week 1 [970a88c5]
+    <a href="https://github.com/simongredal/cars-r-us/tree/970a88c5">(browse repository at this point in history)</a>
+    or <a href="https://github.com/simongredal/cars-r-us/compare/970a88c5...main">(compare with current)</a>
   </summary>
   <article>
 
