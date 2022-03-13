@@ -35,7 +35,7 @@ public class MakeTestData implements ApplicationRunner {
         member2.addRole(Role.USER);
 
         Member member3 = new Member("member3@mail.com", "password", "frida", "frederiksen");
-        member3.addRole(Role.USER);
+        member3.addRole(Role.ADMIN);
 
         memberRepository.save(member1);
         memberRepository.save(member2);
