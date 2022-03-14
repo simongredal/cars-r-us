@@ -1,7 +1,8 @@
 FROM maven:3-openjdk-17 AS build
 WORKDIR /tmp
-ADD pom.xml .
+ADD pom.xml pom.xml
 ADD src src
+ADD .git .git
 RUN ["mvn", "-Pstaging", "clean", "install"]
 
 FROM openjdk:17 AS run
